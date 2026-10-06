@@ -1,4 +1,4 @@
-# Escaneo TCP SYN en Metasploitable Ubuntu
+# Escaneo de puertos TCP y UDP en Metasploitable Ubuntu
 
 Estado: en curso. Escaneo inicial documentado; identificación de servicios pendiente.
 
@@ -49,6 +49,31 @@ La columna `SERVICE` no garantiza que el servicio real coincida con el nombre mo
 
 Un puerto abierto no constituye por sí mismo una vulnerabilidad. El resultado describe lo observado desde Kali en ese momento.
 
+## Prueba complementaria: puerto UDP 53
+
+Se realizó una segunda prueba propia sobre el mismo objetivo:
+
+```bash
+sudo nmap -sU 192.168.32.130 -p 53
+```
+
+`-sU` selecciona un escaneo UDP y `-p 53` limita esta prueba al puerto 53. No es una repetición del escaneo TCP: se evalúa un protocolo diferente.
+
+![Escaneo UDP del puerto 53 en Ubuntu](evidencias/nmap-udp-53-ubuntu.png)
+
+| Dato | Resultado observado |
+|---|---|
+| Objetivo | 192.168.32.130 |
+| Puerto | 53/udp |
+| Estado | open\|filtered |
+| Etiqueta SERVICE | domain |
+| Estado del host | Activo |
+| Duración | 4.89 segundos |
+
+Nmap no pudo distinguir entre un puerto UDP abierto y uno filtrado. Este resultado no confirma un servicio DNS activo. La etiqueta `domain` es una asociación habitual del puerto 53, no una identificación verificada del servicio. La captura no determina la causa concreta del estado ambiguo; no se atribuye a un firewall específico.
+
 ## Continuación pendiente
 
 Se incorporará la siguiente práctica del curso para identificar los servicios y comparar sus resultados con estas etiquetas. Todavía no se han aportado evidencias de detección de versiones, vulnerabilidades, correcciones ni detecciones defensivas para este caso.
+
+La variante con `-v --reason` y exportación XML queda pendiente para la revisión final del portafolio, por decisión del autor.

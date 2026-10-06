@@ -4,7 +4,7 @@ Prácticas de hacking ético en entornos de laboratorio, orientadas a comprender
 
 ## Estado
 
-Primera práctica en curso: escaneo de puertos TCP en Metasploitable Ubuntu. El escaneo inicial está documentado; la identificación de servicios queda pendiente.
+Primera práctica en curso: escaneo de puertos TCP y prueba UDP del puerto 53 en Metasploitable Ubuntu. Ambos resultados están documentados; la identificación de servicios queda pendiente.
 
 ## Temas previstos
 
