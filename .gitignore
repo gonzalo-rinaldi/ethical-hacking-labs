@@ -1,0 +1,20 @@
+# Secretos y material sin revisar
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+privado/
+evidencias-sin-revisar/
+
+# Entornos locales
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Archivos del sistema
+Thumbs.db
+.DS_Store
