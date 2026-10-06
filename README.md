@@ -4,7 +4,7 @@ Prácticas de hacking ético en entornos de laboratorio, orientadas a comprender
 
 ## Estado
 
-En preparación. Aún no hay casos completados. Las prácticas se agregarán a medida que se realicen y se disponga de evidencia.
+Primera práctica en curso: escaneo de puertos TCP en Metasploitable Ubuntu. El escaneo inicial está documentado; la identificación de servicios queda pendiente.
 
 ## Temas previstos
 
@@ -19,7 +19,7 @@ En preparación. Aún no hay casos completados. Las prácticas se agregarán a m
 
 ## Casos publicados
 
-Ninguno todavía. Cada entrada futura enlazará el informe de la práctica e indicará su estado: en curso, completada o pendiente de verificación.
+- [Escaneo TCP SYN e identificación de servicios](02-enumeracion/01-escaneo-puertos-servicios/README.md) — En curso: resultados del escaneo inicial publicados; identificación de servicios pendiente.
 
 ## Cómo documentar una práctica
 
