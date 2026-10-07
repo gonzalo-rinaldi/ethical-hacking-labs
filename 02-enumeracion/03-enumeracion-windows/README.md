@@ -1,6 +1,6 @@
 # Enumeración de Metasploitable Windows
 
-Estado: escaneo dirigido, identificación del sistema y enumeración parcial de recursos SMB documentados; SNMP pendiente.
+Estado: escaneo dirigido, identificación del sistema y enumeración parcial de recursos SMB documentados; SNMP documentado en un caso separado.
 
 ## Objetivo y entorno
 
@@ -550,4 +550,4 @@ La prueba muestra que es posible obtener información parcial incluso cuando la 
 ## Pendientes
 
 - La enumeración SMB prevista queda documentada; consultas adicionales son opcionales.
-- Evaluar SNMP mediante una prueba específica: este escaneo TCP no verifica su disponibilidad por UDP.
+- [Consulta SNMP realizada](../04-enumeracion-snmp/README.md): comparación TCP/UDP e inventario de software.

@@ -19,7 +19,9 @@ Primera práctica documentada: escaneo TCP, prueba UDP del puerto 53 y detecció
 
 ## Casos publicados
 
-- [Enumeración de Metasploitable Windows](02-enumeracion/03-enumeracion-windows/README.md) — Identificación de Windows Server 2008 R2 SP1 y enumeración parcial de recursos SMB documentadas; SNMP pendiente.
+- [Enumeración SNMP en Windows](02-enumeracion/04-enumeracion-snmp/README.md) — Comparación 161/TCP–UDP e inventario de software documentados.
+
+- [Enumeración de Metasploitable Windows](02-enumeracion/03-enumeracion-windows/README.md) — Identificación de Windows Server 2008 R2 SP1 y enumeración parcial de recursos SMB documentadas; SNMP documentado en un caso separado.
 
 - [Detección remota del sistema operativo](02-enumeracion/02-deteccion-sistema-operativo/README.md) — Linux estimado por Nmap, sin coincidencia exacta; contraste con la consola de Ubuntu.
 - [Escaneos TCP/UDP e identificación de servicios](02-enumeracion/01-escaneo-puertos-servicios/README.md) — Escaneos y detección documentados; investigación de vulnerabilidades pendiente.
