@@ -19,7 +19,7 @@ Primera práctica documentada: escaneo TCP, prueba UDP del puerto 53 y detecció
 
 ## Casos publicados
 
-- [Enumeración SNMP en Windows](02-enumeracion/04-enumeracion-snmp/README.md) — Comparación 161/TCP–UDP e inventario de software documentados.
+- [Enumeración SNMP en Windows](02-enumeracion/04-enumeracion-snmp/README.md) — Comparación 161/TCP–UDP, inventario de software y listado de usuarios documentados.
 
 - [Enumeración de Metasploitable Windows](02-enumeracion/03-enumeracion-windows/README.md) — Identificación de Windows Server 2008 R2 SP1 y enumeración parcial de recursos SMB documentadas; SNMP documentado en un caso separado.
 

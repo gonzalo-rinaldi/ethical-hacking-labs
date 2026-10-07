@@ -1,6 +1,6 @@
 # Enumeración SNMP en Metasploitable Windows
 
-Estado: comparación TCP/UDP e inventario remoto de software documentados.
+Estado: comparación TCP/UDP, inventario remoto de software y listado de usuarios por SNMP documentados.
 
 ## Objetivo y entorno
 
@@ -65,6 +65,49 @@ Se transcriben nombres y versiones tal como fueron reportados, sin afirmar que s
 Kali consiguió consultar información de software del servidor mediante SNMP. Esto aporta nombres y versiones para una investigación posterior, pero no demuestra que los programas estén ejecutándose, sean accesibles por red o tengan vulnerabilidades explotables.
 
 El comando no especifica explícitamente una comunidad ni una versión de SNMP. La captura no permite confirmar cuál se utilizó ni que hubiera acceso de escritura. No se interpreta como ausencia de autenticación ni se documenta explotación.
+
+## 4. Enumeración de usuarios mediante SNMP
+
+```bash
+sudo nmap -v -sU -p 161 --script=snmp-win32-users 192.168.32.132
+```
+
+![Ejecución de la consulta de usuarios por SNMP](evidencias/snmp-usuarios-ejecucion.png)
+
+![Listado de usuarios reportado por SNMP](evidencias/snmp-usuarios-listado.png)
+
+El puerto 161/UDP aparece abierto y el script devuelve 20 nombres de cuenta:
+
+```text
+Administrator
+Guest
+anakin_skywalker
+artoo_detoo
+ben_kenobi
+boba_fett
+c_three_pio
+chewbacca
+darth_vader
+greedo
+han_solo
+jabba_hutt
+jarjar_binks
+kylo_ren
+lando_calrissian
+leia_organa
+luke_skywalker
+sshd
+sshd_server
+vagrant
+```
+
+Se documenta la información reportada por el agente SNMP del laboratorio. La salida no revela contraseñas, estado habilitado/deshabilitado, permisos ni sesiones activas, y no demuestra que sea posible iniciar sesión con esas cuentas. No se presenta como inventario exhaustivo verificado localmente. Las capturas no muestran el resumen final de duración.
+
+### Relación con las pruebas SMB
+
+En este mismo objetivo se documentó `smb-enum-shares`, que consulta recursos compartidos y recibió acceso denegado para la enumeración general. Ese script no busca usuarios. No se dispone aquí de una prueba de `smb-enum-users` sobre este objetivo, por lo que no se afirma que la enumeración de usuarios fallara por SMB y funcionara por SNMP en idénticas condiciones.
+
+La observación demostrada es que SNMP expone nombres de cuenta al origen de esta consulta. Conviene evaluar cada servicio por separado: restringir una consulta SMB no determina qué información permite consultar SNMP.
 
 ## Perspectiva defensiva
 
