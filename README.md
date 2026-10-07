@@ -19,7 +19,7 @@ Primera práctica documentada: escaneo TCP, prueba UDP del puerto 53 y detecció
 
 ## Casos publicados
 
-- [Enumeración de Metasploitable Windows](02-enumeracion/03-enumeracion-windows/README.md) — Puertos 139/TCP y 445/TCP abiertos; enumeración SMB y SNMP pendiente.
+- [Enumeración de Metasploitable Windows](02-enumeracion/03-enumeracion-windows/README.md) — Puertos 139/TCP y 445/TCP abiertos e identificación de Windows Server 2008 R2 SP1 mediante SMB; SNMP pendiente.
 
 - [Detección remota del sistema operativo](02-enumeracion/02-deteccion-sistema-operativo/README.md) — Linux estimado por Nmap, sin coincidencia exacta; contraste con la consola de Ubuntu.
 - [Escaneos TCP/UDP e identificación de servicios](02-enumeracion/01-escaneo-puertos-servicios/README.md) — Escaneos y detección documentados; investigación de vulnerabilidades pendiente.
