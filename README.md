@@ -4,7 +4,7 @@ Prácticas de hacking ético en entornos de laboratorio, orientadas a comprender
 
 ## Estado
 
-Primera práctica en curso: escaneo de puertos TCP y prueba UDP del puerto 53 en Metasploitable Ubuntu. Ambos resultados están documentados; la identificación de servicios queda pendiente.
+Primera práctica en curso: escaneo TCP, prueba UDP del puerto 53 y detección de ProFTPD 1.3.5 en 21/TCP en Metasploitable Ubuntu. Investigación de vulnerabilidades pendiente.
 
 ## Temas previstos
 
@@ -19,7 +19,7 @@ Primera práctica en curso: escaneo de puertos TCP y prueba UDP del puerto 53 en
 
 ## Casos publicados
 
-- [Escaneo TCP SYN e identificación de servicios](02-enumeracion/01-escaneo-puertos-servicios/README.md) — En curso: resultados del escaneo inicial publicados; identificación de servicios pendiente.
+- [Escaneos TCP/UDP e identificación de servicios](02-enumeracion/01-escaneo-puertos-servicios/README.md) — En curso: detección de ProFTPD 1.3.5 documentada; investigación de vulnerabilidades pendiente.
 
 ## Cómo documentar una práctica
 

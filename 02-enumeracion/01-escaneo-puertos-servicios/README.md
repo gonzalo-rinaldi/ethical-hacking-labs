@@ -1,6 +1,6 @@
 # Escaneo de puertos TCP y UDP en Metasploitable Ubuntu
 
-Estado: en curso. Escaneo inicial documentado; identificación de servicios pendiente.
+Estado: en curso. Escaneos TCP y UDP documentados; detección del servicio y versión en 21/TCP realizada. Investigación de vulnerabilidades pendiente.
 
 ## Objetivo y entorno
 
@@ -72,8 +72,37 @@ sudo nmap -sU 192.168.32.130 -p 53
 
 Nmap no pudo distinguir entre un puerto UDP abierto y uno filtrado. Este resultado no confirma un servicio DNS activo. La etiqueta `domain` es una asociación habitual del puerto 53, no una identificación verificada del servicio. La captura no determina la causa concreta del estado ambiguo; no se atribuye a un firewall específico.
 
+## Identificación de servicio y versión en 21/TCP
+
+Se ejecutó desde Kali:
+
+```bash
+sudo nmap -sV 192.168.32.130 -p 21
+```
+
+La opción `-sV` solicita detección de servicios y versiones. `-p 21` limita el análisis al puerto 21.
+
+![Detección de ProFTPD en el puerto 21](evidencias/nmap-servicio-ftp.png)
+
+| Dato | Resultado informado por Nmap |
+|---|---|
+| Puerto | 21/tcp |
+| Estado | open |
+| Servicio | ftp |
+| Producto y versión | ProFTPD 1.3.5 |
+| Información adicional | Service Info: OS: Unix |
+| Duración | 15.61 segundos |
+
+En el escaneo SYN inicial, `ftp` era una etiqueta asociada al puerto. Esta segunda prueba identifica mediante detección de servicio el producto ProFTPD y la versión 1.3.5. Se registra como identificación informada por Nmap, no como verificación local del paquete instalado. La indicación Unix procede de la información del servicio; no equivale a una detección completa del sistema operativo.
+
+## Interpretación y siguiente fase
+
+El producto y la versión permiten buscar vulnerabilidades candidatas en fuentes públicas y comparar los requisitos de posibles pruebas de concepto con el laboratorio. La coincidencia de versión, por sí sola, no demuestra una vulnerabilidad explotable: deben verificarse las condiciones relevantes, como configuración, módulos y parches.
+
+Todavía no se ha investigado ni validado una vulnerabilidad concreta en este caso, ni se ha ejecutado un exploit. La investigación y eventual validación en el objetivo propio se documentarán como una fase separada con sus evidencias, impacto y mitigación.
+
 ## Continuación pendiente
 
-Se incorporará la siguiente práctica del curso para identificar los servicios y comparar sus resultados con estas etiquetas. Todavía no se han aportado evidencias de detección de versiones, vulnerabilidades, correcciones ni detecciones defensivas para este caso.
+La identificación de los demás puertos y la investigación de vulnerabilidades siguen pendientes.
 
 La variante con `-v --reason` y exportación XML queda pendiente para la revisión final del portafolio, por decisión del autor.
