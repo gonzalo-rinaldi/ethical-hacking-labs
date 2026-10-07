@@ -37,7 +37,3 @@ Un resultado de herramienta no constituye por sí solo una vulnerabilidad confir
 ## Alcance y publicación
 
 Usar únicamente entornos propios o autorizados. Publicar explicaciones propias y evidencias revisadas, sin contraseñas, tokens, datos personales ni material del curso redistribuido.
-
-## Formación de referencia
-
-[Curso completo de Hacking Ético y Ciberseguridad — Santiago Hernández](https://www.udemy.com/course/curso-completo-de-hacking-etico-y-ciberseguridad/).
