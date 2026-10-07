@@ -1,6 +1,6 @@
 # Escaneo de puertos TCP y UDP en Metasploitable Ubuntu
 
-Estado: en curso. Escaneos TCP y UDP documentados; detección del servicio y versión en 21/TCP realizada. Investigación de vulnerabilidades pendiente.
+Estado: escaneos TCP/UDP y detección de servicios documentados. Investigación de vulnerabilidades pendiente.
 
 ## Objetivo y entorno
 
@@ -95,6 +95,40 @@ La opción `-sV` solicita detección de servicios y versiones. `-p 21` limita el
 
 En el escaneo SYN inicial, `ftp` era una etiqueta asociada al puerto. Esta segunda prueba identifica mediante detección de servicio el producto ProFTPD y la versión 1.3.5. Se registra como identificación informada por Nmap, no como verificación local del paquete instalado. La indicación Unix procede de la información del servicio; no equivale a una detección completa del sistema operativo.
 
+## Detección de servicios en el escaneo TCP general
+
+Se amplió la identificación con el siguiente comando, sin limitar puertos mediante `-p`:
+
+```bash
+sudo nmap -sV 192.168.32.130
+```
+
+![Detección de servicios en los puertos TCP abiertos](evidencias/nmap-servicios-tcp.png)
+
+La salida vuelve a mostrar 7 puertos abiertos, 2 cerrados y 991 filtrados sin respuesta. La ejecución tardó 19.67 segundos.
+
+| Puerto TCP abierto | Servicio informado | Producto o versión informados |
+|---|---|---|
+| 21 | ftp | ProFTPD 1.3.5 |
+| 22 | ssh | OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13 (Ubuntu Linux; protocol 2.0) |
+| 80 | http | Apache httpd 2.4.7 |
+| 445 | netbios-ssn | Samba smbd 3.X - 4.X (workgroup: WORKGROUP) |
+| 631 | ipp | CUPS 1.7 |
+| 3306 | mysql | MySQL (unauthorized) |
+| 8080 | http | Jetty 8.1.7.v20120910 |
+
+Los puertos 3000/TCP y 8181/TCP siguen cerrados. No se les atribuyen aplicaciones activas.
+
+### Comparación e incertidumbres
+
+- En 445/TCP, la etiqueta inicial `microsoft-ds` pasa a `netbios-ssn`, con producto Samba. El rango `3.X - 4.X` no identifica una versión exacta.
+- En 8080/TCP, la etiqueta inicial `http-proxy` pasa a `http`, con Jetty identificado. La primera etiqueta no confirmaba que fuera un proxy.
+- En 3306/TCP, Nmap informa MySQL con `unauthorized`, sin versión. Esto no demuestra acceso a la base de datos ni una vulnerabilidad.
+- ProFTPD 1.3.5 coincide con la prueba específica anterior del puerto 21.
+- La línea `Service Info` informa Unix/Linux y los nombres `127.0.0.1` y `UBUNTU`. Es información recopilada de los servicios, no una prueba independiente de detección del sistema operativo.
+
+Estas identificaciones remotas orientan la investigación posterior; no verifican por sí solas el estado de parches ni la configuración local.
+
 ## Interpretación y siguiente fase
 
 El producto y la versión permiten buscar vulnerabilidades candidatas en fuentes públicas y comparar los requisitos de posibles pruebas de concepto con el laboratorio. La coincidencia de versión, por sí sola, no demuestra una vulnerabilidad explotable: deben verificarse las condiciones relevantes, como configuración, módulos y parches.
@@ -103,6 +137,6 @@ Todavía no se ha investigado ni validado una vulnerabilidad concreta en este ca
 
 ## Continuación pendiente
 
-La identificación de los demás puertos y la investigación de vulnerabilidades siguen pendientes.
+Quedan pendientes la investigación de vulnerabilidades y, si resulta necesario para ella, precisar la versión de Samba y MySQL. No es necesario asumir versiones que la evidencia no muestra.
 
 La variante con `-v --reason` y exportación XML queda pendiente para la revisión final del portafolio, por decisión del autor.
