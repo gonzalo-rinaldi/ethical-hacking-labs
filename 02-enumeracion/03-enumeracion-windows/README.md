@@ -35,6 +35,25 @@ Ambos puertos están abiertos desde la perspectiva de Kali. El resultado permite
 
 No se utilizó `-sV`; las etiquetas SERVICE son asociaciones habituales de los puertos y no una identificación confirmada del software que responde.
 
+## Exploración local de scripts NSE relacionados con SMB
+
+Se navegó al directorio de scripts de Nmap y se listaron los archivos cuyo nombre comienza con `smb`:
+
+```bash
+cd /usr/share/nmap/scripts
+ls smb*
+```
+
+![Acceso al directorio de scripts](evidencias/nse-directorio.png)
+
+![Listado de scripts SMB y SMB2](evidencias/nse-listado-smb.png)
+
+El listado incluye scripts como `smb-enum-shares.nse`, `smb-enum-users.nse`, `smb-os-discovery.nse`, `smb-protocols.nse`, `smb2-security-mode.nse` y otros orientados a comprobaciones de vulnerabilidades o acciones más intrusivas.
+
+NSE (Nmap Scripting Engine) permite automatizar tareas de descubrimiento, enumeración y detección de vulnerabilidades; algunos scripts también implementan explotación. No todos los scripts SMB realizan la misma tarea y comprobar una vulnerabilidad no equivale necesariamente a explotarla. Referencia técnica: [documentación oficial de NSE](https://nmap.org/book/nse.html).
+
+Estos comandos únicamente inspeccionan archivos locales: no ejecutan scripts contra Windows ni demuestran vulnerabilidades del objetivo. La enumeración remota sigue pendiente. Antes de usar un script se revisará su función y sus requisitos; no se ejecutará indiscriminadamente todo el conjunto mostrado.
+
 ## Pendientes
 
 - Incorporar la enumeración SMB con su comando y resultados.
