@@ -4,7 +4,7 @@ Prácticas de hacking ético en entornos de laboratorio, orientadas a comprender
 
 ## Estado
 
-Primera práctica documentada: escaneo TCP, prueba UDP del puerto 53 y detección de servicios en los siete puertos TCP abiertos de Metasploitable Ubuntu. Se registran las versiones informadas y las incertidumbres de Samba y MySQL. Investigación de vulnerabilidades pendiente.
+Enumeración de Ubuntu y Windows documentada. Análisis de vulnerabilidades de Windows iniciado con Nmap: dos detecciones positivas pendientes de contraste con Nessus y verificación independiente.
 
 ## Temas previstos
 
@@ -18,6 +18,8 @@ Primera práctica documentada: escaneo TCP, prueba UDP del puerto 53 y detecció
 | `06-explotacion-y-postexplotacion/` | Validación controlada de impacto y medidas defensivas |
 
 ## Casos publicados
+
+- [Análisis de vulnerabilidades en Windows](03-analisis-vulnerabilidades/01-windows-nmap-nessus/README.md) — MS17-010 y parámetros DH débiles reportados por Nmap; Nessus pendiente.
 
 - [Enumeración SNMP en Windows](02-enumeracion/04-enumeracion-snmp/README.md) — Comparación 161/TCP–UDP, inventario de software y listado de usuarios documentados.
 
