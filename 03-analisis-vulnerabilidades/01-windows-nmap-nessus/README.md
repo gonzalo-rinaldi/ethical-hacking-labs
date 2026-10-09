@@ -1,6 +1,6 @@
 # Análisis de vulnerabilidades en Metasploitable Windows
 
-Estado: resultados de Nmap documentados. Contraste con Nessus, verificación independiente y correcciones pendientes.
+Estado: resultados de Nmap y conversión del informe a HTML documentados; problema de visualización resuelto. Contraste con Nessus, verificación independiente y correcciones pendientes.
 
 ## Objetivo y alcance
 
@@ -71,23 +71,34 @@ Este error corresponde a la presentación del informe y no invalida por sí solo
 
 La documentación de Nmap explica que las restricciones de origen de los navegadores pueden impedir cargar hojas XSL. La captura no permite determinar si intervino esa restricción, la conectividad o una falla al obtener el recurso remoto.
 
-### Solución propuesta, pendiente de comprobar
+### Solución aplicada: conversión local a HTML
 
-Convertir el XML existente a HTML con la hoja local de Nmap:
+Se convirtió el XML existente utilizando la hoja XSL local de Nmap:
 
 ```bash
-cd ~
 xsltproc -o vulnerabilidades_tcp.html /usr/share/nmap/nmap.xsl vulnerabilidades_tcp.xml
-firefox vulnerabilidades_tcp.html
+firefox vulnerabilidades_tcp.html &
 ```
 
-Si `xsltproc` no está instalado, habrá que instalarlo en Kali antes de convertir. El uso de `chmod 777` no resuelve la carga de la hoja de estilo y no es necesario para visualizar el informe. No se recomienda desactivar protecciones de Firefox ni repetir el escaneo para este problema.
+![Conversión con xsltproc y apertura de Firefox](evidencias/conversion-html.png)
+
+La terminal regresó al prompt tras la conversión y el HTML se abrió correctamente en Firefox. El `&` permite mantener disponible la terminal mientras Firefox está abierto.
+
+![Informe HTML: resumen y puertos](evidencias/informe-html-resumen.png)
+
+![Informe HTML: resultados de scripts SMB](evidencias/informe-html-smb.png)
+
+El resumen conserva el objetivo `192.168.32.132`, Nmap 7.99, los 982 puertos cerrados y la duración de 146.79 segundos. La tabla muestra la detección MS17-010 y los resultados SMB de acceso denegado/false ya documentados. Son otra presentación del mismo escaneo, no una nueva comprobación independiente de las vulnerabilidades.
+
+**Incidencia de visualización resuelta**, según las capturas. Se publicó la evidencia visual; los archivos XML y HTML originales todavía no se han adjuntado al repositorio.
+
+No fue necesario repetir el escaneo para generar esta vista. `chmod 777` no es parte de la solución a la carga de la hoja de estilo. No se presenta ningún cambio de permisos o de protecciones de Firefox como verificado mediante estas nuevas capturas.
 
 Referencia: [creación de informes HTML en Nmap](https://nmap.org/book/output-formats-output-to-html.html).
 
 ## Próximos pasos
 
-- Comprobar la conversión local y conservar XML/HTML para el contraste.
+- Conservar y, cuando se aporten, incorporar los archivos XML/HTML originales para el contraste.
 - Analizar el mismo objetivo con Nessus y comparar las evidencias de los dos hallazgos.
 - Verificar las condiciones de cada hallazgo antes de afirmar explotabilidad.
 - Documentar mitigaciones aplicadas y su comprobación posterior cuando se realicen.
