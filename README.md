@@ -4,7 +4,7 @@ Prácticas de hacking ético en entornos de laboratorio, orientadas a comprender
 
 ## Estado
 
-Enumeración de Ubuntu y Windows documentada. Análisis de vulnerabilidades de Windows iniciado con Nmap: dos detecciones positivas pendientes de contraste con Nessus y verificación independiente.
+Enumeración de Ubuntu y Windows documentada. Análisis de Windows con Nmap y Nessus documentados: descubrimiento, resumen de severidades, un hallazgo RDP y limitaciones del análisis. Contraste por plugin, validación independiente y correcciones pendientes.
 
 ## Temas previstos
 
@@ -19,7 +19,7 @@ Enumeración de Ubuntu y Windows documentada. Análisis de vulnerabilidades de W
 
 ## Casos publicados
 
-- [Análisis de vulnerabilidades en Windows](03-analisis-vulnerabilidades/01-windows-nmap-nessus/README.md) — MS17-010 y parámetros DH débiles reportados por Nmap; Nessus pendiente.
+- [Análisis de vulnerabilidades en Windows](03-analisis-vulnerabilidades/01-windows-nmap-nessus/README.md) — Nmap y Nessus: evidencias seleccionadas, hallazgo RDP, remediaciones propuestas y limitaciones de cobertura.
 
 - [Enumeración SNMP en Windows](02-enumeracion/04-enumeracion-snmp/README.md) — Comparación 161/TCP–UDP, inventario de software y listado de usuarios documentados.
 
@@ -43,3 +43,4 @@ Un resultado de herramienta no constituye por sí solo una vulnerabilidad confir
 ## Alcance y publicación
 
 Usar únicamente entornos propios o autorizados. Publicar explicaciones propias y evidencias revisadas, sin contraseñas, tokens, datos personales ni material del curso redistribuido.
+

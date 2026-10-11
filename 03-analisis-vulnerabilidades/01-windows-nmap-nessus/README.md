@@ -1,6 +1,6 @@
 # Análisis de vulnerabilidades en Metasploitable Windows
 
-Estado: resultados de Nmap y conversión del informe a HTML documentados; problema de visualización resuelto. Contraste con Nessus, verificación independiente y correcciones pendientes.
+Estado: resultados de Nmap, conversión a HTML y primera evaluación con Nessus documentados. Correlación de hallazgos entre herramientas, verificación independiente y correcciones pendientes.
 
 ## Objetivo y alcance
 
@@ -96,9 +96,79 @@ No fue necesario repetir el escaneo para generar esta vista. `chmod 777` no es p
 
 Referencia: [creación de informes HTML en Nmap](https://nmap.org/book/output-formats-output-to-html.html).
 
+## Evaluación con Nessus
+
+Práctica guiada realizada sobre la misma máquina Windows del laboratorio. Las capturas aportadas documentan la configuración y los resultados; no se dispone todavía de la exportación original `.nessus`. Se seleccionaron evidencias de cada etapa, omitiendo capturas duplicadas y listados parciales sin el nombre del hallazgo.
+
+### Descubrimiento del objetivo
+
+Se configuró `Host Discovery`, nombre `HostDiscoveryTest`, con un único objetivo: `192.168.32.132`. La configuración mostrada utilizó `Host enumeration`.
+
+![Configuración del descubrimiento](evidencias/nessus-discovery-config.png)
+
+El análisis terminó en aproximadamente un minuto y detectó un host. La vista enumera los puertos 135, 139, 161, 445 y 49152–49157, sin mostrar en esa tabla el protocolo de transporte. No se interpreta esta lista como inventario exhaustivo ni sus dos resultados informativos como dos vulnerabilidades confirmadas.
+
+![Resultado del descubrimiento](evidencias/nessus-discovery-resultado.png)
+
+### Análisis de vulnerabilidades
+
+Se ejecutó `Basic Network Scan`, con nombre `Windows-Lab-Vulnerabilidades`, contra `192.168.32.132`. La evidencia no demuestra autenticación exitosa: el resumen muestra `Auth: Fail`.
+
+![Configuración del análisis](evidencias/nessus-scan-config.png)
+
+El escaneo figura como `Completed`, de 16:28 a 16:55, con una duración de 27 minutos según la interfaz. Finalizar el trabajo no implica que todas las comprobaciones hayan podido ejecutarse.
+
+![Resumen del análisis completado](evidencias/nessus-resumen.png)
+
+La barra del host muestra **21 resultados críticos, 28 altos, 34 medios y 117 informativos**. Existe un segmento de severidad baja cuyo número no se distingue en la captura; no se estima. La pestaña `Vulnerabilities: 50` presenta una vista agrupada, con filas `MIXED` y una columna `Count`; no se equipara ese contador a 50 CVE únicos ni se suma a los valores de la barra.
+
+### Hallazgo seleccionado: debilidad de intermediario en RDP
+
+| Campo | Dato mostrado por Nessus |
+|---|---|
+| Nombre | Remote Desktop Protocol Server Man-in-the-Middle Weakness |
+| Plugin | 18405, versión 1.34, tipo remoto |
+| Severidad | Media |
+| CVSS v3.0 base | 6,5 |
+| Vector CVSS v3.0 | `CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N` |
+| CVE | CVE-2005-1794 |
+| Evidencia técnica en Output | `No output recorded` |
+
+![Descripción y solución del hallazgo RDP](evidencias/nessus-rdp-descripcion.png)
+
+![Puntuación y referencia CVE del hallazgo RDP](evidencias/nessus-rdp-riesgo.png)
+
+Según la descripción del plugin, un atacante con capacidad para interceptar el tráfico podría aprovechar la debilidad en la autenticación del servidor RDP para acceder a información transmitida. Se registra como **detección del escáner pendiente de validación**: no se ha demostrado interceptación, exposición de credenciales ni explotación. La captura de Output no aporta una respuesta técnica con la que verificar por separado la detección.
+
+El plugin propone forzar SSL como transporte y/o requerir Network Level Authentication (NLA), cuando esté disponible. Como siguiente paso se plantea revisar la configuración real de RDP, documentar el cambio seleccionado y repetir la comprobación. No se afirma que estas medidas estén aplicadas. Este hallazgo no es el mismo que BlueKeep, que aparece en el resumen de remediaciones.
+
+### Remediaciones propuestas por el escáner
+
+![Resumen de remediaciones de Nessus](evidencias/nessus-remediaciones.png)
+
+La pestaña muestra cinco acciones asociadas a Apache HTTP Server, PHP, Apache Tomcat, RDP/BlueKeep y SSH/Terrapin. Es una guía inicial de revisión, no evidencia de correcciones realizadas ni confirmación individual de todas las vulnerabilidades agrupadas.
+
+Las versiones de actualización indicadas en la captura son los umbrales propuestos por ese conjunto de plugins. No se presentan como versiones vigentes recomendadas: antes de corregir habría que comprobar el software instalado, su soporte y los avisos del proveedor. Para priorizar se necesita además la salida de cada plugin y la exposición del servicio; los contadores por acción no se suman como CVE únicos.
+
+### Limitaciones y calidad de la evidencia
+
+![Avisos y limitaciones del escaneo](evidencias/nessus-limitaciones.png)
+
+- **Autenticación:** `Auth: Fail` impide presentar este análisis como una auditoría autenticada completa. El resumen no permite determinar si se configuraron credenciales ni la causa del fallo.
+- **DNS:** Nessus informa errores al resolver dominios de comprobación bajo `r.nessus.org`, incluida una comprobación Log4j. Estos errores no confirman ni descartan Log4j. No se ha demostrado su causa; la falta de resolución o salida externa debe investigarse antes de repetir esas pruebas.
+- **Plugins:** el aviso indica que no se actualizan desde `2026/9/9` y advierte de cobertura incompleta. No se atribuye automáticamente a la licencia ni se afirma que la actualización esté resuelta.
+- **Detalle incompleto:** se dispone de un hallazgo RDP individual, pero faltan las salidas de los críticos y altos y la exportación original. No se afirma explotabilidad ni se inventan identificadores para completar las listas.
+
+### Comparación con Nmap
+
+Ambas herramientas se ejecutaron sobre la misma IP del laboratorio, pero las capturas de Nessus aportadas no muestran el detalle de MS17-010 ni del grupo DH débil en 8383/TCP. **El contraste de esas dos detecciones sigue pendiente.** La presencia de resultados RDP o de un contador de críticos no confirma automáticamente los hallazgos SMB/TLS de Nmap.
+
 ## Próximos pasos
 
 - Conservar y, cuando se aporten, incorporar los archivos XML/HTML originales para el contraste.
-- Analizar el mismo objetivo con Nessus y comparar las evidencias de los dos hallazgos.
+- Incorporar, si está disponible, la exportación original de Nessus y las salidas de plugins críticos y altos.
+- Revisar actualización de plugins y resolución DNS; repetir las comprobaciones afectadas y registrar su resultado.
+- Contrastar MS17-010 y los parámetros DH con los resultados específicos de Nessus.
 - Verificar las condiciones de cada hallazgo antes de afirmar explotabilidad.
 - Documentar mitigaciones aplicadas y su comprobación posterior cuando se realicen.
+
