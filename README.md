@@ -4,7 +4,7 @@ Prácticas de hacking ético en entornos de laboratorio, orientadas a comprender
 
 ## Estado
 
-Enumeración de Ubuntu y Windows documentada. Análisis de Windows con Nmap y Nessus documentados: descubrimiento, resumen de severidades, un hallazgo RDP y limitaciones del análisis. Contraste por plugin, validación independiente y correcciones pendientes.
+Enumeración de Ubuntu y Windows documentada. Bloque de Nessus completado: descubrimiento, análisis básico y avanzado, hallazgos seleccionados y limitaciones de cobertura. La validación independiente, las correcciones y las pruebas posteriores siguen pendientes. Próxima etapa: explotación controlada en el laboratorio.
 
 ## Temas previstos
 
@@ -18,6 +18,8 @@ Enumeración de Ubuntu y Windows documentada. Análisis de Windows con Nmap y Ne
 | `06-explotacion-y-postexplotacion/` | Validación controlada de impacto y medidas defensivas |
 
 ## Casos publicados
+
+- [Evaluación avanzada con Nessus](03-analisis-vulnerabilidades/02-nessus-avanzado/README.md) — BlueKeep, MS11-030, sistema fuera de soporte y posible clickjacking; comparación con el básico y límites de la evidencia.
 
 - [Análisis de vulnerabilidades en Windows](03-analisis-vulnerabilidades/01-windows-nmap-nessus/README.md) — Nmap y Nessus: evidencias seleccionadas, hallazgo RDP, remediaciones propuestas y limitaciones de cobertura.
 
@@ -43,4 +45,3 @@ Un resultado de herramienta no constituye por sí solo una vulnerabilidad confir
 ## Alcance y publicación
 
 Usar únicamente entornos propios o autorizados. Publicar explicaciones propias y evidencias revisadas, sin contraseñas, tokens, datos personales ni material del curso redistribuido.
-

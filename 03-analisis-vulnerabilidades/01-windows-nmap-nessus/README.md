@@ -163,6 +163,10 @@ Las versiones de actualización indicadas en la captura son los umbrales propues
 
 Ambas herramientas se ejecutaron sobre la misma IP del laboratorio, pero las capturas de Nessus aportadas no muestran el detalle de MS17-010 ni del grupo DH débil en 8383/TCP. **El contraste de esas dos detecciones sigue pendiente.** La presencia de resultados RDP o de un contador de críticos no confirma automáticamente los hallazgos SMB/TLS de Nmap.
 
+## Continuación y cierre del bloque Nessus
+
+La [evaluación avanzada con Nessus](../02-nessus-avanzado/README.md) documenta la política intrusiva, los resultados finales y cuatro hallazgos seleccionados. El bloque práctico queda cerrado con sus limitaciones explícitas; las comprobaciones pendientes de este caso se conservan a continuación.
+
 ## Próximos pasos
 
 - Conservar y, cuando se aporten, incorporar los archivos XML/HTML originales para el contraste.
@@ -171,4 +175,3 @@ Ambas herramientas se ejecutaron sobre la misma IP del laboratorio, pero las cap
 - Contrastar MS17-010 y los parámetros DH con los resultados específicos de Nessus.
 - Verificar las condiciones de cada hallazgo antes de afirmar explotabilidad.
 - Documentar mitigaciones aplicadas y su comprobación posterior cuando se realicen.
-
