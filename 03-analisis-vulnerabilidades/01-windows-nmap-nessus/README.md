@@ -167,7 +167,7 @@ Ambas herramientas se ejecutaron sobre la misma IP del laboratorio, pero las cap
 
 La [evaluación avanzada con Nessus](../02-nessus-avanzado/README.md) documenta la política intrusiva, los resultados finales y cuatro hallazgos seleccionados. El bloque práctico queda cerrado con sus limitaciones explícitas; las comprobaciones pendientes de este caso se conservan a continuación.
 
-## Próximos pasos
+## Límites conservados al cierre
 
 - Conservar y, cuando se aporten, incorporar los archivos XML/HTML originales para el contraste.
 - Incorporar, si está disponible, la exportación original de Nessus y las salidas de plugins críticos y altos.
@@ -175,3 +175,7 @@ La [evaluación avanzada con Nessus](../02-nessus-avanzado/README.md) documenta 
 - Contrastar MS17-010 y los parámetros DH con los resultados específicos de Nessus.
 - Verificar las condiciones de cada hallazgo antes de afirmar explotabilidad.
 - Documentar mitigaciones aplicadas y su comprobación posterior cuando se realicen.
+
+## Actualización de cierre — 13 de octubre de 2026
+
+El [escáner auxiliar de Metasploit](../03-contraste-ms17-010/README.md) también reportó MS17-010 como probable. Este contraste posterior complementa la detección de Nmap; no constituye explotación ni resuelve la falta de correlación con Nessus.

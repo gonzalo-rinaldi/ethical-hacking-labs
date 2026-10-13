@@ -1,47 +1,41 @@
 # Ethical Hacking Labs
 
-Prácticas de hacking ético en entornos de laboratorio, orientadas a comprender vulnerabilidades, evaluar su impacto y proponer medidas de detección y corrección.
+Portafolio de Gonzalo Rinaldi: prácticas guiadas sobre máquinas propias, con evidencias de enumeración, análisis de vulnerabilidades e interpretación de resultados.
 
-## Estado
+**Versión cerrada — 13 de octubre de 2026.** Esta entrega reúne siete casos documentados. El alcance final comprende descubrimiento de servicios, enumeración SMB/SNMP, evaluaciones con Nmap y Nessus y contraste de MS17-010 mediante un escáner auxiliar de Metasploit.
 
-Enumeración de Ubuntu y Windows documentada. Bloque de Nessus completado: descubrimiento, análisis básico y avanzado, hallazgos seleccionados y limitaciones de cobertura. La validación independiente, las correcciones y las pruebas posteriores siguen pendientes. Próxima etapa: explotación controlada en el laboratorio.
+## Recorrido recomendado
 
-## Temas previstos
-
-| Carpeta que se creará al agregar casos | Tema |
+| Caso | Trabajo documentado |
 |---|---|
-| `01-reconocimiento/` | Información pública y DNS |
-| `02-enumeracion/` | Descubrimiento de equipos, puertos y servicios |
-| `03-analisis-vulnerabilidades/` | Análisis, validación y priorización de hallazgos |
-| `04-seguridad-web/` | Vulnerabilidades en aplicaciones web de laboratorio |
-| `05-seguridad-redes/` | Análisis de tráfico y ataques de red en laboratorio |
-| `06-explotacion-y-postexplotacion/` | Validación controlada de impacto y medidas defensivas |
+| [Nmap y Nessus en Windows](03-analisis-vulnerabilidades/01-windows-nmap-nessus/README.md) | Lectura de resultados SMB/TLS, informe HTML, análisis básico y propuestas de remediación |
+| [Evaluación avanzada con Nessus](03-analisis-vulnerabilidades/02-nessus-avanzado/README.md) | Cuatro hallazgos seleccionados, comparación de políticas y límites de cobertura |
+| [Contraste de MS17-010](03-analisis-vulnerabilidades/03-contraste-ms17-010/README.md) | Segunda detección con Metasploit y distinción entre detección y explotación |
+| [Escaneos TCP/UDP y servicios](02-enumeracion/01-escaneo-puertos-servicios/README.md) | Identificación de puertos y servicios en Ubuntu |
+| [Detección de sistema operativo](02-enumeracion/02-deteccion-sistema-operativo/README.md) | Estimación de Nmap y contraste con la consola |
+| [Enumeración de Windows](02-enumeracion/03-enumeracion-windows/README.md) | Identificación por SMB y enumeración parcial de recursos compartidos |
+| [Enumeración SNMP](02-enumeracion/04-enumeracion-snmp/README.md) | Comparación TCP/UDP, inventario de software y usuarios del laboratorio |
 
-## Casos publicados
+## Competencias practicadas
 
-- [Evaluación avanzada con Nessus](03-analisis-vulnerabilidades/02-nessus-avanzado/README.md) — BlueKeep, MS11-030, sistema fuera de soporte y posible clickjacking; comparación con el básico y límites de la evidencia.
+- Interpretar puertos, servicios, sistemas operativos y respuestas de herramientas.
+- Seleccionar evidencias y redactar resultados reproducibles a partir de prácticas guiadas.
+- Diferenciar detecciones, errores, comprobaciones incompletas y acceso efectivamente conseguido.
+- Priorizar la revisión de hallazgos y proponer medidas de corrección sin atribuirles una validación inexistente.
+- Resolver la presentación local de un informe XML de Nmap mediante conversión a HTML.
 
-- [Análisis de vulnerabilidades en Windows](03-analisis-vulnerabilidades/01-windows-nmap-nessus/README.md) — Nmap y Nessus: evidencias seleccionadas, hallazgo RDP, remediaciones propuestas y limitaciones de cobertura.
+## Resultado y límites del cierre
 
-- [Enumeración SNMP en Windows](02-enumeracion/04-enumeracion-snmp/README.md) — Comparación 161/TCP–UDP, inventario de software y listado de usuarios documentados.
+Se conserva lo demostrado por las capturas. **No se consiguió demostrar explotación exitosa, sesión remota ni ejecución de comandos en el objetivo.** El contraste con Metasploit refuerza la detección de MS17-010, pero sigue siendo una comprobación de escáner.
 
-- [Enumeración de Metasploitable Windows](02-enumeracion/03-enumeracion-windows/README.md) — Identificación de Windows Server 2008 R2 SP1 y enumeración parcial de recursos SMB documentadas; SNMP documentado en un caso separado.
+Las correcciones, las pruebas posteriores a remediación y una auditoría autenticada completa no forman parte de esta entrega. Los puntos pendientes de los informes se conservan como límites técnicos, sin comprometer nuevas etapas. Los contadores de Nessus no se presentan como CVE únicos; los avisos de autenticación, DNS y plugins quedan documentados.
 
-- [Detección remota del sistema operativo](02-enumeracion/02-deteccion-sistema-operativo/README.md) — Linux estimado por Nmap, sin coincidencia exacta; contraste con la consola de Ubuntu.
-- [Escaneos TCP/UDP e identificación de servicios](02-enumeracion/01-escaneo-puertos-servicios/README.md) — Escaneos y detección documentados; investigación de vulnerabilidades pendiente.
+## Entorno y metodología
 
-## Cómo documentar una práctica
+[Cybersecurity Homelab](https://github.com/gonzalo-rinaldi/cybersecurity-homelab) reúne las pruebas de conectividad y el contexto de las máquinas VMware, Kali, Metasploitable Ubuntu y Windows.
 
-1. Copiar la [plantilla de práctica](plantillas/practica.md) a una carpeta del tema correspondiente, por ejemplo `02-enumeracion/01-descubrimiento-servicios/README.md`.
-2. Registrar el entorno, el alcance y los pasos efectivamente realizados.
-3. Añadir evidencias seleccionadas dentro de una subcarpeta `evidencias/` del caso.
-4. Explicar los resultados, limitaciones, mitigaciones y posibles señales de detección.
-5. Actualizar la lista de casos publicados de este README.
+Las prácticas se realizaron como parte de una formación guiada. Este repositorio presenta la documentación de las pruebas y sus evidencias; no acredita experiencia profesional ni una auditoría de producción. La [plantilla](plantillas/practica.md) se conserva como recurso reutilizable.
 
-## Criterio de documentación
+## Alcance
 
-Un resultado de herramienta no constituye por sí solo una vulnerabilidad confirmada. Cada caso distinguirá observaciones, hipótesis y hallazgos verificados. Se indicará si el ejercicio fue guiado y qué aportes se realizaron de forma independiente.
-
-## Alcance y publicación
-
-Usar únicamente entornos propios o autorizados. Publicar explicaciones propias y evidencias revisadas, sin contraseñas, tokens, datos personales ni material del curso redistribuido.
+Pruebas sobre sistemas propios de laboratorio. Las direcciones privadas de las capturas pertenecen al entorno de práctica. No se incluyen credenciales, material audiovisual del curso ni resultados inventados.

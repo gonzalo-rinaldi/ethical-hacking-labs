@@ -107,4 +107,4 @@ Se practicó la configuración de una política avanzada, la lectura de severida
 
 `Advanced Dynamic Scan` se revisó únicamente como contenido teórico sobre selección de plugins mediante reglas; **no se ejecutó**. La presentación de otras herramientas también fue teórica y no se añade como experiencia práctica.
 
-La siguiente etapa es la explotación controlada en el laboratorio. Se documentarán por separado el alcance, la prueba realizada, el resultado verificable y las medidas de corrección, sin presentar los hallazgos actuales como explotaciones exitosas.
+El portafolio se cierra con el [contraste de MS17-010 mediante Metasploit](../03-contraste-ms17-010/README.md). Se documentó una segunda detección; no se demostró explotación exitosa. Las validaciones y correcciones no realizadas quedan como limitaciones de esta entrega.
